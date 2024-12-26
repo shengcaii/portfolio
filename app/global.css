@@ -1,8 +1,9 @@
 @import 'tailwindcss';
 
-::selection{
+::selection {
   background-color: #237ec9af;
 }
+
 :root {
   --sh-class: #2d5e9d;
   --sh-identifier: #354150;
@@ -18,12 +19,40 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --sh-class: #4c97f8;
-    --sh-identifier: white;
+    --sh-identifier: #e0e0e0;
     --sh-keyword: #f47067;
     --sh-string: #0fa295;
+    --sh-comment: #a19595;
+    --sh-jsxliterals: #8a8aff;
+    --sh-property: #e25a1c;
+    --sh-entity: #e25a1c;
   }
+
   html {
     color-scheme: dark;
+    background-color: #10223a;
+    color: #e0e0e0;
+  }
+
+  .prose p {
+    color: #e0e0e0;
+  }
+
+  .prose a {
+    text-decoration-color: #8a8aff;
+  }
+
+  .prose pre {
+    background-color: #1e1e1e;
+    border-color: #333;
+  }
+
+  .prose code {
+    background-color: #2d2d2d;
+  }
+
+  .prose .anchor:after {
+    color: #555;
   }
 }
 
@@ -32,8 +61,9 @@ html {
 }
 
 .prose .anchor {
-  @apply absolute invisible no-underline;
-
+  position: absolute;
+  visibility: hidden;
+  text-decoration: none;
   margin-left: -1em;
   padding-right: 0.5em;
   width: 80%;
@@ -42,79 +72,102 @@ html {
 }
 
 .anchor:hover {
-  @apply visible;
+  visibility: visible;
 }
 
 .prose a {
-  @apply underline transition-all decoration-neutral-400 dark:decoration-neutral-600 underline-offset-2 decoration-[0.1em];
+  text-decoration: underline;
+  transition: all;
+  text-decoration-color: #a3a3a3;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 0.1em;
 }
 
 .prose .anchor:after {
-  @apply text-neutral-300 dark:text-neutral-700;
+  color: #a3a3a3;
   content: '#';
 }
 
-.prose *:hover > .anchor {
-  @apply visible;
+.prose *:hover>.anchor {
+  visibility: visible;
 }
 
 .prose pre {
-  @apply bg-neutral-50 dark:bg-neutral-900 rounded-lg overflow-x-auto border border-neutral-200 dark:border-neutral-900 py-2 px-3 text-sm;
+  background-color: #f5f5f5;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  border: 1px solid #e5e5e5;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
 }
 
 .prose code {
-  @apply px-1 py-0.5 rounded-lg;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .prose pre code {
-  @apply p-0;
+  padding: 0;
   border: initial;
   line-height: 1.5;
 }
 
 .prose code span {
-  @apply font-medium;
+  font-weight: 500;
 }
 
 .prose img {
-  /* Don't apply styles to next/image */
-  @apply m-0;
+  margin: 0;
 }
 
 .prose p {
-  @apply my-4 text-neutral-800 dark:text-neutral-200;
+  margin: 1rem 0;
+  color: #333;
 }
 
 .prose h1 {
-  @apply text-4xl font-medium tracking-tight mt-6 mb-2;
+  font-size: 2.25rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .prose h2 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .prose h3 {
-  @apply text-xl font-medium tracking-tight mt-6 mb-2;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .prose h4 {
-  @apply text-lg font-medium tracking-tight mt-6 mb-2;
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .prose strong {
-  @apply font-medium;
+  font-weight: 500;
 }
 
 .prose ul {
-  @apply list-disc pl-6;
+  list-style-type: disc;
+  padding-left: 1.5rem;
 }
 
 .prose ol {
-  @apply list-decimal pl-6;
+  list-style-type: decimal;
+  padding-left: 1.5rem;
 }
 
-.prose > :first-child {
-  /* Override removing top margin, causing layout shift */
+.prose> :first-child {
   margin-top: 1.25em !important;
   margin-bottom: 1.25em !important;
 }
@@ -124,11 +177,10 @@ pre::-webkit-scrollbar {
 }
 
 pre {
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* Remove Safari input shadow on mobile */
 input[type='text'],
 input[type='email'] {
   -webkit-appearance: none;
