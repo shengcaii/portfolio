@@ -6,7 +6,7 @@ export default function Page() {
     <section>
       <div className="flex items-center group space-x-6 md:space-x-10 my-4">
         <h1 className="mb-4 text-xl md:text-2xl font-semibold tracking-tighter">
-          Hello, I'm <span className="text-blue-500">Shengcai</span> 👋
+          Hello, I'm <span className="text-blue-500">Thiha Aung</span> 👋
         </h1>
         <Image
           src="/me.webp"
@@ -17,7 +17,7 @@ export default function Page() {
         />
       </div>
       <p className="mb-4">
-        I'm a student at Technological University of Thanlyin studying civil engineering and also dive into web development as a hobby. I love to make things easier and more efficient especially in automated tasks by utitlizing the programming tricks and tools. There are a lot of resources and authors that had given me as a grip to climb up the ladder of programming. I'm still learning and I'm always open to new ideas and opportunities.
+        I'm a civil engineering student at Technological University of Thanlyin, but I also enjoy web development as a hobby. I love finding ways to make things easier and more efficient, especially by automating tasks with programming tools and tricks. Along the way, I've learned a lot from great resources and authors who have helped me grow. I'm still learning and always open to new ideas and opportunities!
       </p>
       <div className="my-8">
         <BlogPosts />

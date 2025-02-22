@@ -1,3 +1,19 @@
+
+const projects = {
+    "https://nyrddc.vercel.app": {
+        name: "NYRDDC",
+    },
+    "https://thihaaung-auth.vercel.app": {
+        name: "Luna, a dating app demo",
+    },
+    "https://shengcai-payload.vercel.app": {
+        name: "Payload CMS",
+    },
+    "https://t.me/connectorhookbot": {
+        name: "Telegram Bot"
+    },
+}
+
 export default function Page() {
     return (
         <div>
@@ -5,16 +21,19 @@ export default function Page() {
             <p>
                 I have been working on a few projects. Here are some of them:
             </p>
-            <ul>
-                <li className="hover:text-white text-sky-400"><a href="https://nyrddc.vercel.app" target="_blank">
-                    Static site for My school
-                </a>
-                </li>
-                <li>
-                    <a href="https://thihaaung-auth.vercel.app" target="_blank" className="hover:text-white text-sky-400">
-                        Luna, a dating app demo featuring authentication flow using supabase and Next.js
-                    </a>
-                </li>
+            <ul className="flex flex-col gap-2 mt-4">
+                {Object.entries(projects).map(([path, { name }]) => {
+                    return (
+                        <a
+                            key={path}
+                            href={path}
+                            className="transition-all text-sky-500 hover:text-neutral-800 dark:hover:text-neutral-200 flex align-middle relative px-2"
+                            target="_blank"
+                        >
+                            {name}
+                        </a>
+                    )
+                })}
             </ul>
 
         </div>
