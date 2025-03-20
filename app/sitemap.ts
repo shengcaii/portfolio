@@ -1,17 +1,27 @@
-import { getBlogPosts } from 'app/blog/utils'
+import { getBlogPosts } from 'app/(pages)/blog/utils'
 
-export const baseUrl = 'https://portfolio-blog-starter.vercel.app'
+type SitemapEntry = {
+  url: string
+  lastModified: string
+}
 
-export default async function sitemap() {
-  let blogs = getBlogPosts().map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: post.metadata.publishedAt,
-  }))
+export const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://portfolio-blog-starter.vercel.app'
 
-  let routes = ['', '/blog'].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date().toISOString().split('T')[0],
-  }))
+export default async function sitemap(): Promise<SitemapEntry[]> {
+  try {
+    const blogs = (await getBlogPosts()).map((post) => ({
+      url: `${baseUrl}/blog/${post.slug}`,
+      lastModified: new Date(post.metadata.publishedAt).toISOString().split('T')[0],
+    }))
 
-  return [...routes, ...blogs]
+    const routes = ['', '/blog'].map((route) => ({
+      url: `${baseUrl}${route}`,
+      lastModified: new Date().toISOString().split('T')[0],
+    }))
+
+    return [...routes, ...blogs]
+  } catch (error) {
+    console.error('Error generating sitemap:', error)
+    return []
+  }
 }
